@@ -1,0 +1,43 @@
+.bar {
+    background: rgba(92, 92, 92, 1);
+    margin-bottom: 100px;
+}
+
+.bar.current-min {
+    background: rgba(199, 95, 95, 1);
+}
+
+.bar.current {
+    background: rgba(101, 187, 147, 1);
+}
+
+.bar.sorted {
+    background: rgba(47, 47, 47, 1);
+}
+
+.tooltip .tooltip--text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    margin-left: 10px;
+    top: -32px;
+    left: -13px;
+
+    padding: 0 5px;
+
+    background-color: rgb(73, 73, 73);
+    color: antiquewhite;
+    transform: rotate(-45deg);
+    transition: opacity .2s ease-in-out;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip:hover .tooltip--text {
+    visibility: visible;
+    z-index: 1000;
+    opacity: 1;
+}
