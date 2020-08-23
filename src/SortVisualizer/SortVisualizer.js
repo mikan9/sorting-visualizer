@@ -23,6 +23,7 @@ export default class SortVisualizer extends Component {
         this.handleStartSort = this.handleStartSort.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.handleAlgorithmSelected = this.handleAlgorithmSelected.bind(this);
+        this.handleOpenSettings = this.handleOpenSettings.bind(this);
 
         this.state = {
             minValue: DEFAULT_MIN,
@@ -94,6 +95,10 @@ export default class SortVisualizer extends Component {
         });
     }
 
+    handleOpenSettings = () => {
+        document.body.classList.toggle("settings-open");
+    }
+
     handleAlgorithmSelected = (value) => {
         algorithmId = value;
     }
@@ -109,81 +114,89 @@ export default class SortVisualizer extends Component {
 
         return (
             <div className="content">
+                <button
+                    className="settings-toggle"
+                    aria-label="toggle settings"
+                    onClick={this.handleOpenSettings}
+                >
+                    <span class="hamburger"></span>
+                </button>
                 <div className="top">
-                    <div className="title">
-                        <h1 className="title">Sorting Algorithm <br /> Visualizer</h1>
+                    <div className="top__panel">
+                        <div className="title">
+                            <h1 className="title">Sorting Algorithm <br /> Visualizer</h1>
+                        </div>
+                        <div className="algorithm">
+                            <span className="algorithm--title">Algorithm: </span>
+                            <div className="algorithm__select">
+                                <AlgorithmSelect
+                                    defaultSelectText={algorithmList[0].name}
+                                    optionsList={algorithmList}
+                                    onAlgorithmSelected={this.handleAlgorithmSelected}
+                                />
+                            </div>
+                        </div>
+                        <div className="settings">
+                            <div className="settings--input">
+                                <span className="settings--input__title">Mininum</span>
+                                <input
+                                    name="settings--input_min"
+                                    type="range"
+                                    className="settings--input__slider settings--input__min"
+                                    min="0"
+                                    max="75"
+                                    defaultValue="0"
+                                    onChange={this.handleChangeMinValue}>
+                                </input>
+                                <label htmlFor="settings--input__min" className="settings--input__label">{minValue}</label>
+                            </div>
+                            <div className="settings--input">
+                                <span className="settings--input__title">Maximum</span>
+                                <input
+                                    name="settings--input_max"
+                                    type="range"
+                                    className="settings--input__slider settings--input__max"
+                                    min="0"
+                                    max="75"
+                                    defaultValue="75"
+                                    onChange={this.handleChangeMaxValue}>
+                                </input>
+                                <label htmlFor="settings--input__max" className="settings--input__label">{maxValue}</label>
+                            </div>
+                            <div className="settings--input">
+                                <span className="settings--input__title">Count</span>
+                                <input
+                                    name="settings--input_count"
+                                    type="range"
+                                    className="settings--input__slider settings--input__count"
+                                    min="3"
+                                    max="120"
+                                    defaultValue="120"
+                                    onChange={this.handleChangeLength}>
+                                </input>
+                                <label htmlFor="settings--input__count" className="settings--input__label">{length}</label>
+                            </div>
+                            <div className="settings--input">
+                                <span className="settings--input__title">Speed</span>
+                                <input
+                                    name="settings--input_speed"
+                                    type="range"
+                                    className="settings--input__slider settings--input__speed"
+                                    min="1"
+                                    max="100"
+                                    defaultValue="50"
+                                    onChange={this.handleChangeSpeed}>
+                                </input>
+                                <label id="settings--speed" htmlFor="settings--input__speed" className="settings--input__label">{speed}</label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="algorithm">
-                        <span className="algorithm--title">Algorithm: </span>
-                        <div className="algorithm__select">
-                            <AlgorithmSelect
-                                defaultSelectText={algorithmList[0].name}
-                                optionsList={algorithmList}
-                                onAlgorithmSelected={this.handleAlgorithmSelected}
-                            />
-                        </div>
-
-                    </div>
-                    <div className="settings">
-                        <div className="settings--input">
-                            <span className="settings--input__title">Mininum</span>
-                            <input
-                                name="settings--input_min"
-                                type="range"
-                                className="settings--input__slider settings--input__min"
-                                min="0"
-                                max="75"
-                                defaultValue="0"
-                                onChange={this.handleChangeMinValue}>
-                            </input>
-                            <label htmlFor="settings--input__min" className="settings--input__label">{minValue}</label>
-                        </div>
-                        <div className="settings--input">
-                            <span className="settings--input__title">Maximum</span>
-                            <input
-                                name="settings--input_max"
-                                type="range"
-                                className="settings--input__slider settings--input__max"
-                                min="0"
-                                max="75"
-                                defaultValue="75"
-                                onChange={this.handleChangeMaxValue}>
-                            </input>
-                            <label htmlFor="settings--input__max" className="settings--input__label">{maxValue}</label>
-                        </div>
-                        <div className="settings--input">
-                            <span className="settings--input__title">Count</span>
-                            <input
-                                name="settings--input_count"
-                                type="range"
-                                className="settings--input__slider settings--input__count"
-                                min="3"
-                                max="120"
-                                defaultValue="120"
-                                onChange={this.handleChangeLength}>
-                            </input>
-                            <label htmlFor="settings--input__count" className="settings--input__label">{length}</label>
-                        </div>
-                        <div className="settings--input">
-                            <span className="settings--input__title">Speed</span>
-                            <input
-                                name="settings--input_speed"
-                                type="range"
-                                className="settings--input__slider settings--input__speed"
-                                min="1"
-                                max="100"
-                                defaultValue="50"
-                                onChange={this.handleChangeSpeed}>
-                            </input>
-                            <label id="settings--speed" htmlFor="settings--input__speed" className="settings--input__label">{speed}</label>
-                        </div>
-                    </div>
-                    <div className="nav">
-                        <button className="nav__btn" onClick={this.handleStartSort}>Start</button>
-                        <button className="nav__btn" onClick={this.handleReset}>Reset</button>
+                    <div className="controls">
+                        <button className="controls__btn" onClick={this.handleStartSort}>Start</button>
+                        <button className="controls__btn" onClick={this.handleReset}>Reset</button>
                     </div>
                 </div>
-                <div className="body">
+                <div className="visualizer__container">
                     <Visualizer id="visualizer" minValue={minValue} maxValue={maxValue} length={length} keepBars="false" />
                 </div>
             </div>
