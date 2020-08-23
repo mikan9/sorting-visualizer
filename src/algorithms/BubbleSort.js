@@ -1,8 +1,9 @@
 import { sortingFinished } from "../SortVisualizer/SortVisualizer";
+import { log } from '../SortVisualizer/Logger';
 import { timer, swap, setBarState } from "../SortVisualizer/Sorter";
 
 export async function bubbleSort(length) {
-    console.log("Starting Bubble Sort.");
+    log("Starting Bubble Sort.");
     let n = length;
 
     while (n > 1) {

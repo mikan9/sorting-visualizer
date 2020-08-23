@@ -1,8 +1,9 @@
 import { sortingFinished } from "../SortVisualizer/SortVisualizer";
+import { log } from '../SortVisualizer/Logger';
 import { timer, updateBar, setBarState } from "../SortVisualizer/Sorter";
 
 export async function mergeSort(length) {
-    console.log("Starting Merge Sort.");
+    log("Starting Merge Sort.");
 
     let A = Array.from(document.querySelectorAll(".bar")).map((e) => { return Number(e.dataset.value) }),
         B = [];

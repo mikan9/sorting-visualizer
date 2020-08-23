@@ -10,7 +10,7 @@ export default class Bar extends Component {
     }
 
     componentDidMount() {
-        // console.log("-- Bar#" + this.props.className + "Mounted --");
+        // log("-- Bar#" + this.props.className + "Mounted --");
     }
 
     render() {

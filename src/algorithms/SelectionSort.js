@@ -1,9 +1,10 @@
 
 import { sortingFinished } from "../SortVisualizer/SortVisualizer";
+import { log } from '../SortVisualizer/Logger';
 import { timer, swap, setBarState, getSortStatus } from "../SortVisualizer/Sorter";
 
 export async function selectionSort(length) {
-    console.log("Starting Selection Sort.");
+    log("Starting Selection Sort.");
     Array.from(document.querySelectorAll("bar")).forEach(element => {
         element.classList.remove("sorted");
     });

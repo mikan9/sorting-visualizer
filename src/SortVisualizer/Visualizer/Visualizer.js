@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Visualizer.css';
+import { log } from '../Logger';
 import Bar from './Bar/Bar';
 
 export default class Visualizer extends Component {
@@ -29,13 +30,13 @@ export default class Visualizer extends Component {
     }
 
     componentDidMount() {
-        console.log("--Visualizer Mounted-- | min: " + this.props.minValue);
+        log("--Visualizer Mounted-- | min: " + this.props.minValue);
         const bars = this.generateBars(this.props.minValue, this.props.maxValue, this.props.length);
         this.setState({ bars: bars });
     }
 
     handleReset = () => {
-        console.log("--Visualizer.js: handleReset--");
+        log("--Visualizer.js: handleReset--");
         this.updateBars(this.props.minValue, this.props.maxValue, this.props.length, false);
     }
 

@@ -3,6 +3,7 @@ import './SortVisualizer.css';
 import Visualizer from './Visualizer/Visualizer';
 import AlgorithmSelect from './AlgorithmSelect/AlgorithmSelect';
 import { Sort, setSpeed, stopSort } from './Sorter';
+import { log } from './Logger';
 import { calcStyle } from './Visualizer/Bar/Bar';
 
 const MAX_LENGTH = 120;
@@ -45,30 +46,30 @@ export default class SortVisualizer extends Component {
     }
 
     componentDidMount() {
-        console.log("--SortVisualizer Mounted--");
+        log("--SortVisualizer Mounted--");
         this.updateVisualizer(DEFAULT_MIN, DEFAULT_MAX, MAX_LENGTH);
     }
 
     handleChangeMinValue = (e) => {
-        console.log("--SortVisualizer.js: handleChangeMinValue--");
+        log("--SortVisualizer.js: handleChangeMinValue--");
         const val = e.target.value;
         this.updateVisualizer(val, this.state.maxValue, this.state.length);
     }
 
     handleChangeMaxValue = (e) => {
-        console.log("--SortVisualizer.js: handleChangeMaxValue--");
+        log("--SortVisualizer.js: handleChangeMaxValue--");
         const val = e.target.value;
         this.updateVisualizer(this.state.minValue, val, this.state.length);
     }
 
     handleChangeLength = (e) => {
-        console.log("--SortVisualizer.js: handleChangeLength--");
+        log("--SortVisualizer.js: handleChangeLength--");
         const val = e.target.value;
         this.updateVisualizer(this.state.minValue, this.state.maxValue, val);
     }
 
     handleChangeSpeed = (e) => {
-        console.log("--SortVisualizer.js: handleChangeSpeed--");
+        log("--SortVisualizer.js: handleChangeSpeed--");
         const val = e.target.value;
         speed = val;
         setSpeed(speed);
@@ -76,7 +77,7 @@ export default class SortVisualizer extends Component {
     }
 
     handleStartSort = () => {
-        console.log("--SortVisualizer.js: handleStartSort--");
+        log("--SortVisualizer.js: handleStartSort--");
         if (isSorting) return;
         isSorting = true;
         Sort(algorithmId, this.state.length, speed);
@@ -119,7 +120,7 @@ export default class SortVisualizer extends Component {
                     aria-label="toggle settings"
                     onClick={this.handleOpenSettings}
                 >
-                    <span class="hamburger"></span>
+                    <span className="hamburger"></span>
                 </button>
                 <div className="top">
                     <div className="top__panel">

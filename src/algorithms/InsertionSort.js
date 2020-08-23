@@ -1,8 +1,9 @@
 import { sortingFinished } from "../SortVisualizer/SortVisualizer";
+import { log } from '../SortVisualizer/Logger';
 import { timer, swap, setBarState } from "../SortVisualizer/Sorter";
 
 export async function insertionSort(length) {
-    console.log("Starting Insertion Sort.");
+    log("Starting Insertion Sort.");
     let i = 1;
 
     while (i < length) {

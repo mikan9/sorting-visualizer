@@ -1,8 +1,9 @@
 import { sortingFinished } from "../SortVisualizer/SortVisualizer";
+import { log } from '../SortVisualizer/Logger';
 import { timer, swap, setBarState } from "../SortVisualizer/Sorter";
 
 export async function heapSort(length) {
-    console.log("Starting Heapsort.");
+    log("Starting Heapsort.");
 
     let arr = Array.from(document.querySelectorAll(".bar"))
         .map((e) => { return Number(e.dataset.value) });
